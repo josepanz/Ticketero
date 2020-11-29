@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Ticketero;
+using Ticketero.Models;
 
 namespace Ticketero.Controllers
 {
@@ -17,7 +17,7 @@ namespace Ticketero.Controllers
         // GET: Cajas
         public ActionResult Index()
         {
-            return View(db.Caja.ToList());
+            return View(db.Cajas.ToList());
         }
 
         // GET: Cajas/Details/5
@@ -27,7 +27,7 @@ namespace Ticketero.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Caja caja = db.Caja.Find(id);
+            Caja caja = db.Cajas.Find(id);
             if (caja == null)
             {
                 return HttpNotFound();
@@ -42,15 +42,15 @@ namespace Ticketero.Controllers
         }
 
         // POST: Cajas/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id_Caja,Descripcion,Estado,Codigo")] Caja caja)
         {
             if (ModelState.IsValid)
             {
-                db.Caja.Add(caja);
+                db.Cajas.Add(caja);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Ticketero.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Caja caja = db.Caja.Find(id);
+            Caja caja = db.Cajas.Find(id);
             if (caja == null)
             {
                 return HttpNotFound();
@@ -74,8 +74,8 @@ namespace Ticketero.Controllers
         }
 
         // POST: Cajas/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id_Caja,Descripcion,Estado,Codigo")] Caja caja)
@@ -96,7 +96,7 @@ namespace Ticketero.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Caja caja = db.Caja.Find(id);
+            Caja caja = db.Cajas.Find(id);
             if (caja == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Ticketero.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Caja caja = db.Caja.Find(id);
-            db.Caja.Remove(caja);
+            Caja caja = db.Cajas.Find(id);
+            db.Cajas.Remove(caja);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

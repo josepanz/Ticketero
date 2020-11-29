@@ -182,12 +182,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Caja.cs">
-      <DependentUpon>ModeloTicket.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Cliente.cs">
-      <DependentUpon>ModeloTicket.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CajasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
@@ -197,29 +191,38 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ModeloTicket.Context.cs">
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Caja.cs">
+      <DependentUpon>ModeloTicket.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cliente.cs">
+      <DependentUpon>ModeloTicket.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contacto.cs">
+      <DependentUpon>ModeloTicket.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModeloTicket.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloTicket.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloTicket.cs">
+    <Compile Include="Models\ModeloTicket.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloTicket.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloTicket.Designer.cs">
+    <Compile Include="Models\ModeloTicket.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloTicket.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="Ticket.cs">
+    <Compile Include="Models\Ticket.cs">
       <DependentUpon>ModeloTicket.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -230,23 +233,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="ModeloTicket.Context.tt">
+    <Content Include="Models\ModeloTicket.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloTicket.edmx</DependentUpon>
       <LastGenOutput>ModeloTicket.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ModeloTicket.tt">
+    <Content Include="Models\ModeloTicket.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloTicket.edmx</DependentUpon>
       <LastGenOutput>ModeloTicket.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="ModeloTicket.edmx">
+    <EntityDeploy Include="Models\ModeloTicket.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloTicket.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="ModeloTicket.edmx.diagram">
+    <Content Include="Models\ModeloTicket.edmx.diagram">
       <DependentUpon>ModeloTicket.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

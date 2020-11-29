@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Ticketero.Cliente>
+﻿@model IEnumerable<Ticketero.Models.Cliente>
 
 @{
     ViewBag.Title = "Index";
@@ -20,18 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.CI)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cliente1.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cliente2.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cliente11.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cliente3.Nombre)
-        </th>
         <th></th>
     </tr>
 
@@ -45,18 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente1.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente2.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente11.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente3.Nombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id_Cliente }) |
