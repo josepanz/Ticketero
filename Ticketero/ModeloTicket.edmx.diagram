@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7d53cc42a8e64acd9da3b37923f6ac76" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_TicketModel.Caja" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_TicketModel.Cliente" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_TicketModel.Ticket" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="BD_TicketModel.FK_Ticket_Caja" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_TicketModel.FK_Cliente_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_TicketModel.FK_Cliente_Cliente1" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_TicketModel.FK_Ticket_Cliente" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
