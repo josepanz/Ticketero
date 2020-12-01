@@ -17,7 +17,7 @@ namespace Ticketero.Controllers
         // GET: Clientes
         public ActionResult Index()
         {
-            return View(db.Clientes.ToList());
+            return View(db.Cliente.ToList());
         }
 
         // GET: Clientes/Details/5
@@ -27,7 +27,7 @@ namespace Ticketero.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = db.Clientes.Find(id);
+            Cliente cliente = db.Cliente.Find(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -42,15 +42,15 @@ namespace Ticketero.Controllers
         }
 
         // POST: Clientes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id_Cliente,Nombre,Apellido,CI")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Clientes.Add(cliente);
+                db.Cliente.Add(cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Ticketero.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = db.Clientes.Find(id);
+            Cliente cliente = db.Cliente.Find(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -74,8 +74,8 @@ namespace Ticketero.Controllers
         }
 
         // POST: Clientes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id_Cliente,Nombre,Apellido,CI")] Cliente cliente)
@@ -96,7 +96,7 @@ namespace Ticketero.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = db.Clientes.Find(id);
+            Cliente cliente = db.Cliente.Find(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Ticketero.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cliente cliente = db.Clientes.Find(id);
-            db.Clientes.Remove(cliente);
+            Cliente cliente = db.Cliente.Find(id);
+            db.Cliente.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -38,7 +38,7 @@ namespace Ticketero.Controllers
             if (ModelState.IsValid)
             {
                 contacto.Fecha = DateTime.Now; //verificar
-                db.Contactoes.Add(contacto);
+                db.Contacto.Add(contacto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
