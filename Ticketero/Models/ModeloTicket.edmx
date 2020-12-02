@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BD_TicketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BD_TicketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Caja">
           <Key>
             <PropertyRef Name="Id_Caja" />
@@ -23,8 +23,6 @@
           <Property Name="Apellido" Type="varchar" MaxLength="50" />
           <Property Name="CI" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'BD_Ticket.dbo.Contacto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Contacto">
           <Key>
             <PropertyRef Name="Id_Contacto" />
@@ -75,17 +73,8 @@ advertencia 6002: La tabla o vista 'BD_Ticket.dbo.Contacto' no tiene definida ni
         <EntityContainer Name="BD_TicketModelStoreContainer">
           <EntitySet Name="Caja" EntityType="Self.Caja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacto" EntityType="Self.Contacto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Contacto" EntityType="Self.Contacto" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Contacto].[Id_Contacto] AS [Id_Contacto], 
-    [Contacto].[Fecha] AS [Fecha], 
-    [Contacto].[Nombre] AS [Nombre], 
-    [Contacto].[Correo] AS [Correo], 
-    [Contacto].[Telefono] AS [Telefono], 
-    [Contacto].[Descripcion] AS [Descripcion]
-    FROM [dbo].[Contacto] AS [Contacto]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Ticket_Caja" Association="Self.FK_Ticket_Caja">
             <End Role="Caja" EntitySet="Caja" />
             <End Role="Ticket" EntitySet="Ticket" />
@@ -95,8 +84,7 @@ advertencia 6002: La tabla o vista 'BD_Ticket.dbo.Contacto' no tiene definida ni
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BD_TicketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

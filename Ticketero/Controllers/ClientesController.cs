@@ -10,6 +10,7 @@ using Ticketero.Models;
 
 namespace Ticketero.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         private BD_TicketEntities db = new BD_TicketEntities();
