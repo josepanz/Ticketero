@@ -15,9 +15,11 @@ namespace Ticketero.Models
     
     public partial class BD_TicketEntities : DbContext
     {
+        
         public BD_TicketEntities()
             : base("name=BD_TicketEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
