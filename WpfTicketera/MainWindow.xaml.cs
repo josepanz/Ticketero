@@ -24,5 +24,25 @@ namespace WpfTicketera
         {
             InitializeComponent();
         }
+
+        private void NewProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            /*Tickets*/
+            AltasTickets win2 = new AltasTickets();
+            win2.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            /*Clientes*/
+            AltasClientes c = new AltasClientes();
+            c.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            /*Salir*/
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }
