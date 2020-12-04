@@ -25,7 +25,7 @@ namespace Ticketero.Controllers
         }
         public ActionResult Contact()
         {
-            ViewBag.Message = "Queremos escucharte";
+            ViewBag.Message = "Queremos escucharte ;)";
 
             return View();
         }
