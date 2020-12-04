@@ -25,6 +25,13 @@ namespace Ticketero
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
+            bundles.Add(new StyleBundle("~/Content/TemplateCss").Include(
+                    "~/Content/Template/css/styles.css"));
+
+            bundles.Add(new StyleBundle("~/Content/TemplateJs").Include(
+                  "~/Content/Template/js/scripts.js"));
         }
     }
 }

@@ -231,6 +231,22 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Template\assets\img\bg-masthead.jpg" />
+    <Content Include="Content\Template\assets\img\favicon.ico" />
+    <Content Include="Content\Template\assets\img\portfolio\fullsize\1.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\fullsize\2.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\fullsize\3.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\fullsize\4.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\fullsize\5.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\fullsize\6.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\thumbnails\1.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\thumbnails\2.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\thumbnails\3.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\thumbnails\4.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\thumbnails\5.jpg" />
+    <Content Include="Content\Template\assets\img\portfolio\thumbnails\6.jpg" />
+    <Content Include="Content\Template\css\styles.css" />
+    <Content Include="Content\Template\js\scripts.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -245,6 +261,10 @@
       <DependentUpon>ModeloTicket.edmx</DependentUpon>
       <LastGenOutput>ModeloTicket.cs</LastGenOutput>
     </Content>
+    <Content Include="Multimedi\amis2.jpg" />
+    <Content Include="Multimedi\Jose.jpg" />
+    <Content Include="Multimedi\amis.jpg" />
+    <Content Include="Multimedi\Karen.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ModeloTicket.edmx">
