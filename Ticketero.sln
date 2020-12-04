@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketero", "Ticketero\Ticketero.csproj", "{ED99C7BF-52E5-4211-B114-86437F881D4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTicketera", "WpfTicketera\WpfTicketera.csproj", "{4CEE00B5-065B-47DA-88C3-127815207F76}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{ED99C7BF-52E5-4211-B114-86437F881D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED99C7BF-52E5-4211-B114-86437F881D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED99C7BF-52E5-4211-B114-86437F881D4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CEE00B5-065B-47DA-88C3-127815207F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CEE00B5-065B-47DA-88C3-127815207F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CEE00B5-065B-47DA-88C3-127815207F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CEE00B5-065B-47DA-88C3-127815207F76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
