@@ -12,13 +12,12 @@ namespace Ticketero.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Contacto
+    public partial class AspNetUserLogins
     {
-        public int Id_Contacto { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public string Nombre { get; set; }
-        public string Correo { get; set; }
-        public string Telefono { get; set; }
-        public string Descripcion { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
+    
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

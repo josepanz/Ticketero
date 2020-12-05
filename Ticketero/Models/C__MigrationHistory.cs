@@ -12,13 +12,11 @@ namespace Ticketero.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Contacto
+    public partial class C__MigrationHistory
     {
-        public int Id_Contacto { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public string Nombre { get; set; }
-        public string Correo { get; set; }
-        public string Telefono { get; set; }
-        public string Descripcion { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Cliente.Nombre)
             </td>
             <td hidden>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id_Ticket  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.Id_Ticket }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id_Ticket })
             </td>
         </tr>
     }

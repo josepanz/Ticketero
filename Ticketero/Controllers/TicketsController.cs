@@ -23,7 +23,7 @@ namespace Ticketero.Controllers
         }
 
         // GET: Tickets/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -51,7 +51,10 @@ namespace Ticketero.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Ticket,Nro_Ticket,Fecha,Estado,Id_Cliente,Id_Caja")] Ticket ticket)
+        //public ActionResult Create([Bind(Include = "Id_Ticket,Nro_Ticket,Fecha,Estado,Id_Cliente,Id_Caja")] Ticket ticket)
+        //public ActionResult Create([Bind(Include = "Id_Cliente")] Ticket ticket)
+        public ActionResult Create([Bind(Include = "Id_Ticket, Id_Cliente")] Ticket ticket)
+        //public ActionResult Create(Ticket ticket)
         {
 
             //trae la letra de la primera caja disponible
@@ -63,37 +66,39 @@ namespace Ticketero.Controllers
 
             //trae el id de la primera caja disponible
             var linqIdCaja = (from p in db.Caja
-                              where p.Estado == "D"
+                              where p.Estado == "D" 
                               orderby p.Codigo ascending
                               select p.Id_Caja).Take(1);
             string idCaja = linqIdCaja.ToList()[0].ToString();
             int intIdCaja = Int32.Parse(idCaja);
             //trae el numero de ticket a asociar a la caja disponible
             int linqNroTicket = (from p in db.Ticket
-                                 where p.Id_Caja == intIdCaja
+                                 where p.Id_Caja == intIdCaja && p.Fecha == DateTime.Now
                                  select p).Count();
-            string nroTicket = linqNroTicket.ToString();
+            string nroTicket = (linqNroTicket +1).ToString();
 
             string nroLetraTicket = letraTicket + "" + nroTicket;
 
             if (ModelState.IsValid)
             {
+                //ticket.Id_Ticket = ticket.Id_Ticket;
+                ticket.Id_Cliente = ticket.Id_Cliente;
                 ticket.Nro_Ticket = nroLetraTicket;
                 ticket.Id_Caja = intIdCaja;
                 ticket.Fecha = DateTime.Now;
-                ticket.Estado = "P";
+                ticket.Estado = "P"; 
                 db.Ticket.Add(ticket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id_Caja = new SelectList(db.Caja, "Id_Caja", "Descripcion", ticket.Id_Caja);
+            //ViewBag.Id_Caja = new SelectList(db.Caja, "Id_Caja", "Descripcion", ticket.Id_Caja);
             ViewBag.Id_Cliente = new SelectList(db.Cliente, "Id_Cliente", "Nombre", ticket.Id_Cliente);
             return View(ticket);
         }
 
         // GET: Tickets/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -128,7 +133,7 @@ namespace Ticketero.Controllers
         }
 
         // GET: Tickets/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -145,7 +150,7 @@ namespace Ticketero.Controllers
         // POST: Tickets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             Ticket ticket = db.Ticket.Find(id);
             db.Ticket.Remove(ticket);
@@ -156,7 +161,9 @@ namespace Ticketero.Controllers
         //Trae la lista diaria de Tickets
         public ActionResult DailyList()
         {
-            var ticket = db.Ticket.Include(t => t.Caja).Include(t => t.Cliente).Where(t => t.Fecha == DateTime.Now);
+            DateTime fecha = DateTime.Now.Date;
+            var ticket = db.Ticket.Include(t => t.Caja).Include(t => t.Cliente).Where(t =>  t.Fecha == fecha);
+
             return View(ticket.ToList());
         }
 
