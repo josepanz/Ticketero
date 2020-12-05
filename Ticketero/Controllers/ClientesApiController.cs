@@ -19,6 +19,8 @@ namespace Ticketero.Controllers
         // GET: api/ClientesApi
         public IQueryable<Cliente> GetCliente()
         {
+            db.Configuration.ProxyCreationEnabled = false;
+
             return db.Cliente;
         }
 
@@ -26,6 +28,8 @@ namespace Ticketero.Controllers
         [ResponseType(typeof(Cliente))]
         public IHttpActionResult GetCliente(int id)
         {
+            db.Configuration.ProxyCreationEnabled = false;
+
             Cliente cliente = db.Cliente.Find(id);
             if (cliente == null)
             {

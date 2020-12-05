@@ -289,6 +289,8 @@
     <Content Include="Models\ModeloTicket.edmx.diagram">
       <DependentUpon>ModeloTicket.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\PanzaWeb - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Ticketero - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

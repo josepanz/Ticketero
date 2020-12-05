@@ -57,42 +57,105 @@ namespace Ticketero.Controllers
         //public ActionResult Create(Ticket ticket)
         {
 
-            //trae la letra de la primera caja disponible
-            var linqLetraTicket = (from p in db.Caja
-                                   where p.Estado == "D"
-                                   orderby p.Codigo ascending
-                                   select p.Codigo).Take(1);
-            string letraTicket = linqLetraTicket.ToList()[0].ToString();
 
-            //trae el id de la primera caja disponible
-            var linqIdCaja = (from p in db.Caja
-                              where p.Estado == "D" 
+            //verifica si hay disponibilidad de cajas
+            int disponible = (from p in db.Caja
+                              where p.Estado == "D"
                               orderby p.Codigo ascending
-                              select p.Id_Caja).Take(1);
-            string idCaja = linqIdCaja.ToList()[0].ToString();
-            int intIdCaja = Int32.Parse(idCaja);
-            //trae el numero de ticket a asociar a la caja disponible
-            int linqNroTicket = (from p in db.Ticket
-                                 where p.Id_Caja == intIdCaja && p.Fecha == DateTime.Now
-                                 select p).Count();
-            string nroTicket = (linqNroTicket +1).ToString();
+                              select p.Codigo).Count();
 
-            string nroLetraTicket = letraTicket + "" + nroTicket;
 
-            if (ModelState.IsValid)
+            if (disponible > 0)
             {
-                //ticket.Id_Ticket = ticket.Id_Ticket;
-                ticket.Id_Cliente = ticket.Id_Cliente;
-                ticket.Nro_Ticket = nroLetraTicket;
-                ticket.Id_Caja = intIdCaja;
-                ticket.Fecha = DateTime.Now;
-                ticket.Estado = "P"; 
-                db.Ticket.Add(ticket);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //trae la letra de la primera caja disponible
+                var linqLetraTicket = (from p in db.Caja
+                                       where p.Estado == "D"
+                                       orderby p.Codigo ascending
+                                       select p.Codigo).Take(1);
+
+                string letraTicket = linqLetraTicket.ToList()[0].ToString();
+
+                //trae el id de la primera caja disponible
+                var linqIdCaja = (from p in db.Caja
+                                  where p.Estado == "D"
+                                  orderby p.Codigo ascending
+                                  select p.Id_Caja).Take(1);
+                string idCaja = linqIdCaja.ToList()[0].ToString();
+                int intIdCaja = Int32.Parse(idCaja);
+                //trae el numero de ticket a asociar a la caja disponible
+                DateTime current_date = DateTime.Now.Date;
+                int linqNroTicket = (from p in db.Ticket
+                                     where p.Id_Caja == intIdCaja && p.Fecha == current_date
+                                     select p).Count();
+                linqNroTicket++;
+                string nroTicket = (linqNroTicket).ToString();
+
+                string nroLetraTicket = letraTicket + "" + nroTicket;
+
+                if (ModelState.IsValid)
+                {
+                    //ticket.Id_Ticket = ticket.Id_Ticket;
+                    ticket.Id_Cliente = ticket.Id_Cliente;
+                    ticket.Nro_Ticket = nroLetraTicket;
+                    ticket.Id_Caja = intIdCaja;
+                    ticket.Fecha = DateTime.Now;
+                    ticket.Estado = "P";
+                    db.Ticket.Add(ticket);
+                    db.SaveChanges();
+
+                    //actualiza estado de la caja
+                    Caja caja = db.Caja.Find(intIdCaja);
+                    caja.Estado = "N";
+                    db.Entry(caja).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                //trae la letra de la primera caja disponible
+                var linqLetraTicket = (from p in db.Caja
+                                       orderby p.Codigo ascending
+                                       select p.Codigo).Take(1);
+
+                string letraTicket = linqLetraTicket.ToList()[0].ToString();
+
+                //trae el id de la primera caja disponible
+                var linqIdCaja = (from p in db.Caja
+                                  orderby p.Codigo ascending
+                                  select p.Id_Caja).Take(1);
+
+                string idCaja = linqIdCaja.ToList()[0].ToString();
+
+                int intIdCaja = Int32.Parse(idCaja);
+                //trae el numero de ticket a asociar a la caja disponible
+                DateTime current_date = DateTime.Now.Date;
+                int linqNroTicket = (from p in db.Ticket
+                                     where p.Id_Caja == intIdCaja && p.Fecha == current_date
+                                     select p).Count();
+                linqNroTicket++;
+                string nroTicket = (linqNroTicket).ToString();
+
+                string nroLetraTicket = letraTicket + "" + nroTicket;
+
+                if (ModelState.IsValid)
+                {
+                    //ticket.Id_Ticket = ticket.Id_Ticket;
+                    ticket.Id_Cliente = ticket.Id_Cliente;
+                    ticket.Nro_Ticket = nroLetraTicket;
+                    ticket.Id_Caja = intIdCaja;
+                    ticket.Fecha = DateTime.Now;
+                    ticket.Estado = "P";
+                    db.Ticket.Add(ticket);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+
             }
 
-            //ViewBag.Id_Caja = new SelectList(db.Caja, "Id_Caja", "Descripcion", ticket.Id_Caja);
+            ViewBag.Id_Caja = new SelectList(db.Caja, "Id_Caja", "Descripcion", ticket.Id_Caja);
             ViewBag.Id_Cliente = new SelectList(db.Cliente, "Id_Cliente", "Nombre", ticket.Id_Cliente);
             return View(ticket);
         }
@@ -125,6 +188,16 @@ namespace Ticketero.Controllers
             {
                 db.Entry(ticket).State = EntityState.Modified;
                 db.SaveChanges();
+
+                if (ticket.Estado.ToUpper().Equals("F"))
+                {
+                    //actualiza estado de la caja
+                    Caja caja = db.Caja.Find(ticket.Id_Caja);
+                    caja.Estado = "D";
+                    db.Entry(caja).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.Id_Caja = new SelectList(db.Caja, "Id_Caja", "Descripcion", ticket.Id_Caja);
@@ -153,8 +226,16 @@ namespace Ticketero.Controllers
         public ActionResult DeleteConfirmed(int? id)
         {
             Ticket ticket = db.Ticket.Find(id);
+            Caja caja = db.Caja.Find(ticket.Id_Caja);
+
             db.Ticket.Remove(ticket);
             db.SaveChanges();
+
+            //actualiza estado de la caja
+            caja.Estado = "D";
+            db.Entry(caja).State = EntityState.Modified;
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
         
